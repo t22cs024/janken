@@ -1,0 +1,80 @@
+import random
+list = {0:"グー",1:"チョキ",2:"パー"}
+hand_A = random.randint(0,2)
+hand_B = random.randint(0,2)
+
+hand_list = {"A":random.randint(0,2),"B":random.randint(0,2),"C":random.randint(0,2)}
+def inverse_dic(dictionary):
+	return {v:k for k,v in dictionary.items()}
+
+li = inverse_dic(hand_list)
+
+def judge(A,B):
+    if A == B:
+        return "引き分け"
+    elif abs(A-B) == 2:
+        if A > B :
+            return "Aの勝ち"
+        else:
+            return "Bの勝ち"
+    else:
+        if A>B:
+            return "Bの勝ち"
+        else:
+            return "Aの勝ち"
+    
+
+def BO3():
+    n = 3
+    win = 0
+    for i in range(n):
+        hand_A = random.randint(0,2)
+        hand_B = random.randint(0,2)
+        if judge(hand_A,hand_B) == "Aの勝ち":
+            win += 1
+        elif judge(hand_A,hand_B) == "Bの勝ち":
+            win -= 1
+        print(f"Aの手：{list[hand_A]} v.s. Bの手：{list[hand_B]} →{judge(hand_A,hand_B)}")
+
+    if win == 0:
+        print("引き分け")
+    elif win >0:
+        print("Aの勝ち")
+    else:
+        print("Bの勝ち")
+        
+def judgen(hand_list):
+    g =0
+    c =0
+    p =0
+    for hand in hand_list.values():
+        if hand == 0:
+            g += 1
+        elif hand == 1:
+            c += 1
+        else:
+            p += 1
+    
+    if g > 0 and c >0 and p>0:
+        print("引き分け")
+    elif g > 0 and c >0:
+        for hand in hand_list.values():
+            if hand == 0:
+                print(li[0])
+                del li[0]
+        print("の勝ち")
+    elif g > 0 and p >0:
+        for hand in hand_list.values():
+            if hand == 2:
+                print(li[2])
+                del li[2]
+        print("の勝ち")
+    else:
+        for hand in hand_list.values():
+            if hand == 1:
+                print(li[1])
+                del li[1]
+        print("の勝ち")
+        
+
+judgen(hand_list)
