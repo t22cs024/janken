@@ -74,7 +74,7 @@ def judgen(hand_list):
             if hand == 1:
                 print(li[1])
                 del li[1]
-        print("の勝ち")
+        print("の勝ち!")
         
 
 judgen(hand_list)
